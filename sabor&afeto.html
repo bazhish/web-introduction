@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabor & Afeto | Blog de Culinária</title>
+  <style>
+    :root {
+      --bg: #fffaf5;
+      --surface: #ffffff;
+      --surface-alt: #fff3e8;
+      --primary: #c96a2b;
+      --primary-dark: #8f4517;
+      --text: #2d221c;
+      --muted: #6f625a;
+      --border: #ecd8c8;
+      --shadow: 0 10px 30px rgba(88, 49, 23, 0.10);
+      --radius: 20px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fffaf5 0%, #fff4ea 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 0.92rem;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .topbar p {
+      opacity: 0.92;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 250, 245, 0.88);
+      border-bottom: 1px solid rgba(201, 106, 43, 0.12);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo strong {
+      font-size: 1.35rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.3px;
+    }
+
+    .logo span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-weight: 600;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(201, 106, 43, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 64px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-content,
+    .hero-card,
+    .content-card,
+    .sidebar-card,
+    .newsletter,
+    .footer-grid {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-content {
+      padding: 40px;
+      background: linear-gradient(135deg, #fffaf5 0%, #fff0e1 100%);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 60ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--primary-dark);
+      background: #fff;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .hero-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #ffffff 0%, #fff8f2 100%);
+    }
+
+    .hero-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .mini-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .mini-list li:last-child {
+      border-bottom: none;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: 1.9rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 54ch;
+    }
+
+    main {
+      padding: 18px 0 56px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 0.9fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .content-stack,
+    .sidebar-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .content-card {
+      overflow: hidden;
+    }
+
+    .content-card .card-body {
+      padding: 28px;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+
+    .content-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+
+    .content-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .recipe-list {
+      list-style: disc;
+      padding-left: 20px;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .recipe-list li + li {
+      margin-top: 8px;
+    }
+
+    .read-more {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .sidebar-card {
+      padding: 24px;
+      background: var(--surface-alt);
+    }
+
+    .sidebar-card h3 {
+      margin-bottom: 14px;
+      color: var(--primary-dark);
+      font-size: 1.2rem;
+    }
+
+    .sidebar-card p,
+    .sidebar-card li {
+      color: var(--muted);
+    }
+
+    .sidebar-card li + li {
+      margin-top: 10px;
+    }
+
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .author-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--primary-dark);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .newsletter {
+      margin-top: 40px;
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter h2 {
+      margin-bottom: 8px;
+    }
+
+    .newsletter p {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .newsletter form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter input {
+      min-width: 260px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      outline: none;
+      font: inherit;
+    }
+
+    .newsletter input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(201, 106, 43, 0.12);
+    }
+
+    footer {
+      padding: 28px 0 36px;
+    }
+
+    .footer-grid {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 24px;
+    }
+
+    .footer-grid h3,
+    .footer-grid h4 {
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p,
+    .footer-grid li,
+    .footer-grid a {
+      color: var(--muted);
+    }
+
+    .footer-grid li + li {
+      margin-top: 8px;
+    }
+
+    .copyright {
+      text-align: center;
+      color: var(--muted);
+      padding-top: 18px;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .main-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-content,
+      .hero-card,
+      .content-card .card-body,
+      .sidebar-card,
+      .newsletter,
+      .footer-grid {
+        padding: 22px;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .newsletter form,
+      .newsletter input,
+      .newsletter .btn {
+        width: 100%;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <p>Novas receitas publicadas toda semana</p>
+      <p>Dicas práticas, sobremesas e pratos caseiros</p>
+    </div>
+  </div>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">
+        <strong>Sabor & Afeto</strong>
+        <span>Blog de culinária artesanal</span>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#receitas">Receitas</a></li>
+          <li><a href="#dicas">Dicas</a></li>
+          <li><a href="#autor">Autor</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <a href="#newsletter" class="btn btn-primary">Assinar novidades</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="tag">Receitas fáceis e bem apresentadas</span>
+        <h1>Um blog de culinária com visual profissional e conteúdo de verdade.</h1>
+        <p>
+          Encontre receitas detalhadas, dicas de preparo, combinações de ingredientes e conteúdos pensados para quem quer cozinhar melhor no dia a dia.
+        </p>
+        <div class="hero-actions">
+          <a href="#receitas" class="btn btn-primary">Ver receitas</a>
+          <a href="#dicas" class="btn btn-secondary">Explorar dicas</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div>
+          <h2>Receita em destaque</h2>
+          <p>Bolo de cenoura com cobertura cremosa de chocolate, massa macia e preparo simples.</p>
+        </div>
+        <ul class="mini-list">
+          <li><strong>Tempo:</strong> 50 minutos</li>
+          <li><strong>Dificuldade:</strong> fácil</li>
+          <li><strong>Rendimento:</strong> 10 porções</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="section-head" id="receitas">
+        <div>
+          <h2>Últimas receitas e artigos</h2>
+        </div>
+        <p>
+          A estrutura abaixo usa elementos semânticos para separar o conteúdo principal das informações complementares, mantendo organização e boa leitura.
+        </p>
+      </div>
+
+      <div class="main-grid">
+        <div class="content-stack">
+          <article class="content-card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Receita</span>
+                <span>12 min de leitura</span>
+                <span>Atualizado hoje</span>
+              </div>
+              <h3>Bolo de cenoura com cobertura de chocolate</h3>
+              <p>
+                Essa receita combina praticidade com um resultado caseiro de alta qualidade. A massa fica leve, úmida e bem equilibrada, ideal para café da tarde ou sobremesa.
+              </p>
+              <ul class="recipe-list">
+                <li>3 cenouras médias picadas</li>
+                <li>4 ovos</li>
+                <li>1 xícara de óleo</li>
+                <li>2 xícaras de açúcar</li>
+                <li>2 xícaras de farinha de trigo</li>
+                <li>1 colher de sopa de fermento</li>
+              </ul>
+              <p>
+                Bata cenoura, ovos e óleo no liquidificador. Depois misture com açúcar e farinha. Finalize com fermento, asse em forno preaquecido e cubra com calda de chocolate.
+              </p>
+              <a class="read-more" href="#">Ler receita completa</a>
+            </div>
+          </article>
+
+          <article class="content-card" id="dicas">
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Artigo</span>
+                <span>8 min de leitura</span>
+                <span>Técnicas básicas</span>
+              </div>
+              <h3>5 dicas para melhorar qualquer receita caseira</h3>
+              <p>
+                Uma boa receita não depende apenas dos ingredientes. Medidas corretas, temperatura adequada e atenção ao tempo de preparo fazem diferença no resultado final.
+              </p>
+              <ul class="recipe-list">
+                <li>Separe todos os ingredientes antes de começar.</li>
+                <li>Preaqueça o forno com antecedência.</li>
+                <li>Use utensílios adequados para cada etapa.</li>
+                <li>Respeite as proporções da receita.</li>
+                <li>Prove e ajuste os temperos com cuidado.</li>
+              </ul>
+              <a class="read-more" href="#">Ver mais dicas</a>
+            </div>
+          </article>
+        </div>
+
+        <aside class="sidebar-stack">
+          <section class="sidebar-card" id="autor">
+            <div class="author-box">
+              <div class="author-avatar">SA</div>
+              <div>
+                <h3>Sobre o autor</h3>
+                <p>Chef Ana</p>
+              </div>
+            </div>
+            <p>
+              Apaixonada por culinária caseira, sobremesas práticas e apresentação profissional de receitas para blogs e sites.
+            </p>
+          </section>
+
+          <section class="sidebar-card">
+            <h3>Categorias</h3>
+            <div class="chip-list">
+              <span class="chip">Bolos</span>
+              <span class="chip">Massas</span>
+              <span class="chip">Sobremesas</span>
+              <span class="chip">Lanches</span>
+              <span class="chip">Dicas</span>
+            </div>
+          </section>
+
+          <section class="sidebar-card">
+            <h3>Informações complementares</h3>
+            <ul>
+              <li>Lista de ingredientes organizada</li>
+              <li>Tempo médio de preparo</li>
+              <li>Dicas de substituição de ingredientes</li>
+              <li>Espaço para anúncios ou parceiros</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section class="newsletter" id="newsletter">
+        <div>
+          <h2>Receba novas receitas no seu e-mail</h2>
+          <p>
+            Assine a newsletter para acompanhar publicações semanais, receitas exclusivas e dicas de cozinha organizadas de forma prática.
+          </p>
+        </div>
+        <form>
+          <input type="email" placeholder="Digite seu e-mail" aria-label="Digite seu e-mail" />
+          <button class="btn btn-primary" type="submit">Assinar</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Sabor & Afeto</h3>
+          <p>
+            Blog de culinária focado em receitas acessíveis, conteúdo bem estruturado e experiência visual mais profissional.
+          </p>
+        </div>
+
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li>contato@saboreafeto.com</li>
+            <li>(11) 99999-9999</li>
+            <li>São Paulo - SP</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Informações</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Sabor & Afeto. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
