@@ -1,4 +1,4 @@
-# Guia Profissional de HTML (Resumo Organizado)
+# Guia de HTML
 
 ## 1. Estrutura Básica
 
