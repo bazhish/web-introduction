@@ -195,27 +195,523 @@ div > p {
 
 ## Propriedades
 
-- `color` = define a cor do texto e das decorações de um elemento HTML.
-- `background` = usada para definir múltiplos estilos de plano de fundo em uma única linha, incluindo cor(`color`), imagem(`image`), posição(`position`), repetição(`repeat`), tamanho(`size`) e fixação.
-- `border` =  usada é um atalho para definir a espessura, o estilo e a cor da borda ao redor de um elemento, posicionada entre o padding e a margin. A sintaxe abreviada border: `[width] [style] [color]`.
+As propriedades CSS definem **como um elemento será estilizado**.  
+Elas controlam cor, tamanho, espaçamento, bordas, alinhamento, posição e muito mais.
 
-    - variação de bordas(`style`): `dashed`, `doted`, `solid`, `double`, ``groove``, ``ridge``, ``inset``, ``outset``, ``hiden``, ``none``
-    - Há como mudar a posição da borda com: ``top``, ``left``, ``right``, ``bottom``
-    - Para arredondar os cantos das bordas usamos `radius`
 
-- `margin` =  define o espaçamento externo ao redor de um elemento, criando um espaço transparente fora de suas bordas para separá-lo de outros elementos. Ela pode ser aplicada a todos os lados de uma vez (``margin: 10px``) ou individualmente (``margin-top``, ``margin-right``, etc.), aceitando valores em ``px``, ``em``, ``%``, ``auto`` (para centralizar) ou valores negativos.
+## `color`
 
-- `padding` = define o espaçamento interno, criando espaço entre o conteúdo de um elemento e suas bordas. Essencial no modelo de caixa, ela pode ter de um a quatro valores (``top``, ``right``, ``bottom``, ``left``) e aceita medidas fixas (``px``) ou relativas (``%``, ``em``, ``rem``). O ``padding`` não inclui a margem externa.
-- `width` e `heigth` = As propriedades ``width`` (largura) e ``height`` (altura) no CSS definem as dimensões da área de conteúdo de um elemento HTML.
-    - `max` = As propriedades ``max-width`` e ``max-height`` definem os limites máximos de largura e altura de um elemento, impedindo que ele cresça além de um valor específico, mesmo que seu conteúdo ou o valor de ``width``/``height`` sejam maiores.
+Define a **cor do texto** de um elemento.
 
-- `text-align` = A propriedade ``text-align`` no CSS define o alinhamento horizontal de textos e elementos inline (como imagens ou links) dentro de um elemento de bloco (como ``<div>``, ``<p>``, ou ``<h1>``). Ela não afeta o alinhamento do bloco em si, apenas seu conteúdo interno. Os valores principais são ``left``, ``right``, ``center`` e ``justify``.
+#### **css**
 
-- `direction` = A propriedade ``direction`` no CSS define a direção do fluxo de texto, colunas de tabela e elementos inline (da esquerda para a direita - ``ltr``, ou direita para a esquerda - ``rtl``). É essencial para suporte a idiomas como árabe ou hebraico, influenciando o alinhamento padrão e a direção de escrita.
+```css
+p {
+  color: blue;
+}
+```
 
-- `text-decoration` = A propriedade ``text-decoration`` no CSS é usada para adicionar linhas decorativas ao texto, como sublinhados (``underline``), linhas superiores (``overline``), tachado (``line-through``) ou remover decorações existentes (``none``). Ela é uma abreviação para definir cor, estilo e espessura da linha.
+---
 
-- `text-transformer` =  controla a capitalização (maiúsculas/minúsculas) de textos, permitindo alterar a aparência do texto sem modificar o HTML original. Os principais valores são: ``uppercase`` (tudo maiúsculo), ``lowercase`` (tudo minúsculo), ``capitalize`` (primeira letra de cada palavra em maiúsculo) e ``none`` (valor padrão, sem alterações). `spacing`(da um espaçmento entre as letras) 
+## `background`
 
-- `line-height` = espaçamento entre as linhas
-_ `world-spacing` = espaçamento entre as palavras
+A propriedade `background` é um atalho usado para definir várias configurações de fundo em uma única linha, como:
+
+- cor de fundo
+- imagem
+- posição
+- repetição
+- tamanho
+- fixação
+
+#### **css**
+
+```css
+div {
+  background: lightgray;
+}
+```
+
+#### **css**
+
+```css
+div {
+  background: url("imagem.jpg") no-repeat center/cover;
+}
+```
+
+---
+
+## `border`
+
+A propriedade `border` é um atalho para definir:
+
+- espessura da borda
+- estilo da borda
+- cor da borda
+
+#### **css**
+
+```css
+div {
+  border: 2px solid black;
+}
+```
+
+### Estilos de borda
+
+- `dashed`
+- `dotted`
+- `solid`
+- `double`
+- `groove`
+- `ridge`
+- `inset`
+- `outset`
+- `hidden`
+- `none`
+
+### Bordas por lado
+
+Também é possível aplicar borda em lados específicos:
+
+- `border-top`
+- `border-right`
+- `border-bottom`
+- `border-left`
+
+#### **css**
+
+```css
+div {
+  border-top: 3px solid red;
+}
+```
+
+### Bordas arredondadas
+
+Para arredondar os cantos da borda, usamos `border-radius`.
+
+#### **css**
+
+```css
+div {
+  border-radius: 10px;
+}
+```
+
+---
+
+## `margin`
+
+Define o **espaçamento externo** de um elemento, ou seja, o espaço fora da borda.
+
+#### **css**
+
+```css
+div {
+  margin: 20px;
+}
+```
+
+### Lados individuais
+
+- `margin-top`
+- `margin-right`
+- `margin-bottom`
+- `margin-left`
+
+#### **css**
+
+```css
+div {
+  margin-top: 10px;
+}
+```
+
+### Observação
+
+O valor `auto` é muito usado para centralizar elementos em alguns casos.
+
+#### **css**
+
+```css
+div {
+  width: 300px;
+  margin: auto;
+}
+```
+
+---
+
+## `padding`
+
+Define o **espaçamento interno** de um elemento, ou seja, o espaço entre o conteúdo e a borda.
+
+#### **css**
+
+```css
+div {
+  padding: 20px;
+}
+```
+
+### Lados individuais
+
+- `padding-top`
+- `padding-right`
+- `padding-bottom`
+- `padding-left`
+
+#### **css**
+
+```css
+div {
+  padding-left: 15px;
+}
+```
+
+---
+
+## `width` e `height`
+
+Definem a **largura** e a **altura** da área de conteúdo de um elemento.
+
+#### **css**
+
+```css
+div {
+  width: 300px;
+  height: 150px;
+}
+```
+
+### Limites máximos
+
+As propriedades `max-width` e `max-height` definem o tamanho máximo que um elemento pode atingir.
+
+#### **css**
+
+```css
+img {
+  max-width: 100%;
+}
+```
+
+---
+
+## `text-align`
+
+Define o **alinhamento horizontal do texto** dentro de um elemento.
+
+### Valores principais
+
+- `left`
+- `right`
+- `center`
+- `justify`
+
+#### **css**
+
+```css
+p {
+  text-align: center;
+}
+```
+
+---
+
+## `direction`
+
+Define a **direção do texto**.
+
+### Valores principais
+
+- `ltr` = da esquerda para a direita
+- `rtl` = da direita para a esquerda
+
+#### **css**
+
+```css
+p {
+  direction: rtl;
+}
+```
+
+---
+
+## `text-decoration`
+
+Usada para adicionar ou remover decorações no texto.
+
+### Valores comuns
+
+- `underline`
+- `overline`
+- `line-through`
+- `none`
+
+#### **css**
+
+```css
+a {
+  text-decoration: none;
+}
+```
+
+---
+
+## `text-transform`
+
+Controla a capitalização do texto sem alterar o conteúdo original no HTML.
+
+### Valores principais
+
+- `uppercase`
+- `lowercase`
+- `capitalize`
+- `none`
+
+#### **css**
+
+```css
+p {
+  text-transform: uppercase;
+}
+```
+
+---
+
+## `letter-spacing`
+
+Define o **espaçamento entre as letras**.
+
+#### **css**
+
+```css
+p {
+  letter-spacing: 2px;
+}
+```
+
+---
+
+## `line-height`
+
+Define o **espaçamento entre as linhas** de um texto.
+
+#### **css**
+
+```css
+p {
+  line-height: 1.6;
+}
+```
+
+---
+
+## `word-spacing`
+
+Define o **espaçamento entre as palavras**.
+
+#### **css**
+
+```css
+p {
+  word-spacing: 5px;
+}
+```
+
+---
+
+## `font`
+
+A propriedade `font` é um atalho para definir várias propriedades da fonte de uma só vez, como:
+
+- `font-style`
+- `font-variant`
+- `font-weight`
+- `font-size`
+- `line-height`
+- `font-family`
+
+#### **css**
+
+```css
+p {
+  font: italic small-caps bold 16px/1.5 Arial, sans-serif;
+}
+```
+
+### Observação
+
+Também é comum usar essas propriedades separadamente.
+
+#### **css**
+
+```css
+p {
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+```
+
+---
+
+## `display`
+
+Define como o elemento será exibido no layout da página.
+
+### Valores principais
+
+- `block`
+- `inline`
+- `inline-block`
+- `flex`
+- `grid`
+- `none`
+
+#### **css**
+
+```css
+span {
+  display: inline-block;
+}
+```
+
+### Observação
+
+- `block` ocupa a linha inteira
+- `inline` fica na mesma linha de outros elementos
+- `inline-block` permite estilizar como bloco sem quebrar linha
+- `flex` e `grid` são usados para layout
+
+---
+
+## `position`
+
+Define como o elemento será posicionado na página.
+
+### Valores principais
+
+- `static`
+- `relative`
+- `absolute`
+- `fixed`
+- `sticky`
+
+---
+
+### `static`
+
+Valor padrão. O elemento segue o fluxo normal do documento.
+
+#### **css**
+
+```css
+div {
+  position: static;
+}
+```
+
+### Observação
+
+Com `static`, propriedades como `top`, `right`, `bottom` e `left` não funcionam.
+
+---
+
+### `relative`
+
+O elemento continua no fluxo normal, mas pode ser deslocado em relação à sua posição original.
+
+#### **css**
+
+```css
+div {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+```
+
+### `z-index`
+
+Controla a ordem de empilhamento no eixo Z.
+
+#### **css**
+
+```css
+div {
+  position: relative;
+  z-index: 2;
+}
+```
+
+---
+
+### `absolute`
+
+O elemento é removido do fluxo normal e posicionado em relação ao ancestral posicionado mais próximo.
+
+#### **css**
+
+```css
+div {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+```
+
+---
+
+### `fixed`
+
+O elemento fica fixo em relação à janela do navegador, mesmo durante a rolagem.
+
+#### **css**
+
+```css
+div {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+```
+
+---
+
+### `sticky`
+
+O elemento alterna entre `relative` e `fixed` conforme a rolagem da página.
+
+#### **css**
+
+```css
+div {
+  position: sticky;
+  top: 0;
+}
+```
+
+---
+
+## `opacity`
+
+Define o nível de transparência de um elemento.
+
+- `1` = totalmente visível
+- `0` = totalmente invisível
+
+#### **css**
+
+```css
+div {
+  opacity: 0.5;
+}
+```
+
+
+
+  
