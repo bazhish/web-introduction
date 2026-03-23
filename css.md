@@ -756,3 +756,40 @@ img {
 }
 
 ```
+```css
+img {
+  float: left; /* A imagem flutua para a esquerda */
+  margin-right: 15px; /* Adiciona espaço entre a imagem e o texto */
+}
+
+```
+
+## `Dropdown`
+
+Um efeito de menu dropdown (suspenso) em CSS é criado escondendo elementos com ``display: none`` e exibindo-os com ``display: block`` ao passar o mouse (:hover). A estrutura utiliza p``osition: relative`` no contêiner principal e ``position: absolute`` no conteúdo suspenso para posicioná-lo corretamente abaixo do item. 
+
+### **css**
+
+```css
+/* Container que engloba o botão e o conteúdo */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Conteúdo do dropdown (escondido) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Mostra o dropdown ao passar o mouse */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+```
