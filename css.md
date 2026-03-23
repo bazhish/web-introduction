@@ -711,7 +711,48 @@ div {
   opacity: 0.5;
 }
 ```
+## `overflow`
 
+ controla o comportamento do conteúdo que ultrapassa as dimensões de seu contêiner (transborda), permitindo ocultar, mostrar ou adicionar barras de rolagem.
 
+ - `visible` =  conteúdo transborda e fica visível fora da caixa do elemento.
+ - `scroll` = O conteúdo excedente é cortado, mas barras de rolagem são adicionadas para permitir a visualização.
+ - `auto` = Semelhante a ``scroll``, mas as barras de rolagem aparecem apenas quando o conteúdo realmente ultrapassa o limite.
+ - `hidden` = O conteúdo que excede o limite é cortado e fica invisível.
 
-  
+    - ``overflow-x`` e ``overflow-y`` = Determinam o comportamento do transbordo especificamente na horizontal ou vertical, respectivamente.
+
+    - ``text-overflow`` = Gerencia como o texto que transborda é exibido (ex: com reticências ...).
+
+- A propriedade ``overflow`` também pode ser usada para conter elementos flutuantes, atuando como um "limpador" (``clearfix``) de layout. 
+
+#### **css**
+
+```css
+.conteiner {
+  width: 200px;
+  height: 100px;
+  overflow: auto; /* Adiciona rolagem apenas se necessário */
+}
+```
+
+## `Float`
+
+ é usada para posicionamento e formatação de conteúdo, permitindo que um elemento seja "flutuado" para a esquerda ou para a direita dentro de seu contêiner, forçando o texto e os elementos em linha (``inline``) a envolverem o elemento flutuante.
+
+- ``left`` = O elemento flutua para a esquerda de seu contêiner. O texto e os elementos inline fluem ao redor do lado direito.
+- ``right`` = O elemento flutua para a direita de seu contêiner. O texto e os elementos inline fluem ao redor do lado esquerdo.
+- ``none`` (Padrão) = O elemento não flutua. Ele aparece na ordem normal do documento.
+- ``inline-start`` = Flutua o elemento para o início da linha (esquerda em idiomas da esquerda para a direita, como o português).
+- ``inline-end`` = Flutua o elemento para o final da linha (direita em idiomas da esquerda para a direita).
+inherit = O elemento herda o valor float do seu elemento pai.
+
+#### **css**
+
+```css
+img {
+  float: left; /* A imagem flutua para a esquerda */
+  margin-right: 15px; /* Adiciona espaço entre a imagem e o texto */
+}
+
+```
