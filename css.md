@@ -791,5 +791,99 @@ Um efeito de menu dropdown (suspenso) em CSS é criado escondendo elementos com 
 .dropdown:hover .dropdown-content {
   display: block;
 }
+```
+
+## Especificidade
+
+é o algoritmo que determina qual regra de estilo prevalece quando múltiplas regras conflitantes se aplicam ao mesmo elemento, agindo como um sistema de pontuação baseado na "hierarquia de peso" de seletores (``ID > Classe/Atributo/Pseudoclasse > Elemento/Pseudoelemento``). Uma pontuação maior ou o uso de ``!important`` garante a aplicação do estilo.
+
+## Gradient
+
+Gradientes criam uma transição suave entre duas ou mais cores, aplicadas como ``background-image``. Eles funcionam definindo uma direção (linear ou radial) e as cores (paradas de cor), permitindo efeitos visuais modernos sem imagens. Os tipos principais são ``linear-gradient``() (linha reta) e ``radial-gradient``() `radial`(círculo).
+
+- Propriedade: Geralmente usa-se ``background: linear-gradient``(...) ou ``background-image``.
+- Linear Gradient (``linear-gradient``): Transição em linha reta. Você pode definir a direção com palavras-chave (`to right`, `to top`) ou ângulos (`45deg`).
+  - Exemplo: ``background: linear-gradient``(`to right`, `blue`, `red`); (Azul na esquerda, vermelho na direita).
+- Radial Gradient (`radial-gradient`): Transição a partir de um ponto central, espalhando-se circularmente.
+  - Exemplo: `background: radial-gradient`(`circle`, `yellow`, `green`);
+- Cores e Paradas (`Color Stops`): Você pode adicionar quantas cores quiser, separadas por vírgula. É possível definir porcentagens ou pixels para indicar onde cada cor deve começar ou terminar.
+  - Exemplo: ``linear-gradient``(`red 10%`, `yellow 50%`, `blue 90%`);
+Gradientes Repetidos: As funções ``repeating-linear-gradient``() ou `repeating-radial-gradient`() criam padrões repetitivos.
+
+
+### **css**
+
+```css
+/* Container que engloba o botão e o conteúdo */
+/* Linear básico de cima para baixo */
+.gradiente {
+  background: linear-gradient(red, yellow);
+}
+
+/* Linear da esquerda para a direita com 3 cores */
+.gradiente-direcao {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+}
+
+/* Radial com porcentagens */
+.gradiente-radial {
+  background: radial-gradient(circle, red 10%, blue 100%);
+}
 
 ```
+## ``Text-shadow & Box-shadow``
+
+As propriedades ``text-shadow`` e ``box-shadow`` do CSS3 adicionam sombras a textos e elementos de bloco, respectivamente, melhorando a estilização sem usar imagens. Elas suportam deslocamento horizontal/vertical, desfoque (``blur``) e cor, permitindo sombras personalizadas, múltiplas e com efeito de profundidade. 
+
+Principais Diferenças e Uso:
+- ``text-shadow``: Aplica sombra especificamente ao texto. Sintaxe: ``text-shadow: [deslocamento-x] [deslocamento-y] [blur] [cor]``.
+- ``box-shadow``: Aplica sombra a elementos como divs, imagens ou botões. Sintaxe: ``box-shadow: [deslocamento-x] [deslocamento-y] [blur]`` [espalhamento (``spread``)] ``[cor] [inset]``.
+
+### **html**
+
+```html
+html
+<div class="card">
+  <h1>Efeito Neon</h1>
+</div>
+
+```
+### **css**
+
+```css
+.card {
+  width: 300px;
+  padding: 40px;
+  background-color: #222;
+  text-align: center;
+  border-radius: 15px;
+  
+  /* BOX-SHADOW: 
+     1. Sombra externa suave 
+     2. Sombra interna (inset) para dar brilho na borda */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 
+              inset 0 0 10px rgba(255,255,255,0.1);
+}
+
+h1 {
+  color: #fff;
+  font-family: sans-serif;
+  
+  /* TEXT-SHADOW: 
+     Criando um efeito de brilho neon (várias camadas) */
+  text-shadow: 0 0 5px #fff, 
+               0 0 10px #ff00de, 
+               0 0 20px #ff00de;}
+
+```
+
+## Efeitos de Texto
+
+- `white-space` = controla como os espaços em branco, tabulações e quebras de linha no código HTML são exibidos no navegador. Ela define se o texto quebra automaticamente, preserva espaços múltiplos ou ignora quebras de linha, sendo crucial para formatação de texto e layout.
+
+  - Principais Valores:
+    - ``normal`` (Padrão): Sequências de espaços são condensadas (recolhidas) em um único espaço e o texto quebra automaticamente ao final do contêiner.
+    - ``nowrap``: Condensa espaços em branco, mas impede a quebra de linha automática (o texto fica em uma única linha).
+    - ``pre``: Preserva espaços e quebras de linha, funcionando como a tag `<pre>`. Não quebra linha automaticamente.
+    - ``pre-wrap``: Preserva espaços e quebras de linha, mas permite a quebra automática de linha.
+    - ``pre-line``: Condensa espaços em branco, mas preserva quebras de linha, permitindo quebra automática. 
