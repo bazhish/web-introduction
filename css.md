@@ -848,34 +848,6 @@ html
 </div>
 
 ```
-### **css**
-
-```css
-.card {
-  width: 300px;
-  padding: 40px;
-  background-color: #222;
-  text-align: center;
-  border-radius: 15px;
-  
-  /* BOX-SHADOW: 
-     1. Sombra externa suave 
-     2. Sombra interna (inset) para dar brilho na borda */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 
-              inset 0 0 10px rgba(255,255,255,0.1);
-}
-
-h1 {
-  color: #fff;
-  font-family: sans-serif;
-  
-  /* TEXT-SHADOW: 
-     Criando um efeito de brilho neon (várias camadas) */
-  text-shadow: 0 0 5px #fff, 
-               0 0 10px #ff00de, 
-               0 0 20px #ff00de;}
-
-```
 
 ## Efeitos de Texto
 
@@ -886,4 +858,205 @@ h1 {
     - ``nowrap``: Condensa espaços em branco, mas impede a quebra de linha automática (o texto fica em uma única linha).
     - ``pre``: Preserva espaços e quebras de linha, funcionando como a tag `<pre>`. Não quebra linha automaticamente.
     - ``pre-wrap``: Preserva espaços e quebras de linha, mas permite a quebra automática de linha.
-    - ``pre-line``: Condensa espaços em branco, mas preserva quebras de linha, permitindo quebra automática. 
+    - ``pre-line``: Condensa espaços em branco, mas preserva quebras de linha, permitindo quebra automática.
+    ### **css**
+
+    ```css
+        /* 1. COMPORTAMENTO PADRÃO: Quebra o texto e ignora espaços extras */
+    .caixa-normal {
+      white-space: normal;
+      width: 200px;
+    }
+
+    /* 2. TEXTO EM LINHA ÚNICA: Impede que o texto quebre (mesmo se for longo) */
+    .caixa-sem-quebra {
+      white-space: nowrap;
+      width: 200px;
+      overflow: hidden; /* Esconde o que sobra */
+      text-overflow: ellipsis; /* Adiciona os "..." no final */
+    }
+
+    /* 3. PRESERVAR FORMATAÇÃO: Mantém espaços e quebras manuais do código */
+    .caixa-preservada {
+      white-space: pre-wrap;
+      width: 200px;
+      background-color: #f4f4f4;
+    }
+
+    ```
+
+- `Text-overflow` = define como o conteúdo que transborda (ultrapassa) um contêiner é sinalizado ao usuário. Ela é usada principalmente para cortar texto e adicionar reticências (...), mas só funciona quando combinada com `overflow: hidden` e `white-space: nowrap` para evitar quebras de linha.
+
+
+  ### **css**
+
+  ```css
+  .texto-truncado {
+    width: 200px;
+    white-space: nowrap; /* Não quebra linha */
+    overflow: hidden;    /* Esconde o excesso */
+    text-overflow: ellipsis; /* Adiciona ... */
+  }
+  ```
+
+## Media Queries
+
+As Media Queries são um recurso fundamental que permitem a criação de layouts responsivos, adaptando o estilo da página com base nas características do dispositivo, como largura, altura, resolução e orientação da tela. Elas possibilitam que um site tenha aparências diferentes em computadores, tablets e celulares sem alterar a estrutura HTML.
+
+- Estrutura Básica
+
+    A declaração começa com `@media`, seguido pelo tipo de mídia e a regra de tamanho entre parênteses.
+
+    ## **css**
+
+    ```css
+    @media tipo-de-midia and (caracteristica: valor) {
+    /* CSS aplicado aqui */
+    body { background-color: lightblue; }
+    }
+
+    ```
+
+- Media types
+
+    Define qual o tipo de dispositivo a regra se aplica:
+    
+    - `all` = Padrão. Serve para todos os tipos de dispositivos.
+    - `screen` = Usado para telas de computador, tablets, smartphones.
+    - `print` = Usado para modo de impressão
+    - `speech` = Usado para leitores de tela.
+
+- Media Features
+
+    São as condições que devem ser atendidas. As mais comuns incluem:
+
+    - Largura e altura:
+        - `min-width`/`max-width` = Largura mínima/máxima da viewport.
+        - `min-height`/`max-height` = Altura mínima/máxima da viewport.
+
+    - Orientação:
+        - `portrait` =  Altura maior ou igual à largura.
+        - `landscap` = Largura maior que a altura.
+
+    - Resolução:
+        - `min-resolution`/`max-resolution` = Densidade de pixels (ex: `300dpi`).
+
+    - Largura e altura:
+        - `aspect-radio` = Proporção da tela (ex: `16/9`)
+        - `color` =  Número de bits por cor.
+        - `scan` = : Tipo de escaneamento de TVs (`interlace` ou `progressive`). 
+
+- Operadores lógicos
+
+    Utilizados para combinar características:
+     - `and` = Combina múltiplas condições
+     - `,` = Age como um "`OR`" (ou). Se uma das condições for verdadeira, o estilo é aplicado.
+     - `not` = Inverte o resultado da media query.
+
+Exemplos práticos
+
+- Mudar cor de fundo em telas pequenas (até 600px - Mobile First)
+  ### **css**
+  ```css
+   @media screen and (max-width: 600px) {
+  body {
+    background-color: lightcoral;
+  }
+  }
+  ```
+
+- Layout responsivo com breakpoints
+  ### **css**
+  ```css
+    /* Estilos gerais (desktop) */
+  .container { width: 1000px; }
+
+  /* Tablets */
+  @media screen and (max-width: 768px) {
+    .container { width: 90%; }
+  }
+
+  /* Celulares */
+  @media screen and (max-width: 480px) {
+    .container { width: 100%; }
+  }
+
+  ```
+
+- Orientação de tela
+  ### **css**
+  ```css
+  @media (orientation: landscape) {
+  .sidebar { display: block; }
+  }
+
+  ```
+
+- Tamanhos prédefinos de tela
+  ### **css**
+  ```css
+  /* Smartphones (600px para baixo) */
+  @media only screen and (max-width: 600px) {...}
+
+  /* Dispositivos um pouco maiores, mas ainda pequenos (Pequenos Tablets e Smartphones + largos, 600px para cima) */
+  @media only screen and (min-width: 600px) {...}
+
+  /*Dispostivos Médios (Tablets deitados, 768px para cima) */
+  @media only screen and (min-width: 768px) {...}
+
+  /* Dispostivos Largos (laptops/desktops, 992px para cima) */
+  @media only screen and (min-width: 992px) {...}
+
+  /* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+  @media only screen and (min-width: 1200px) {...}
+  ```
+
+## Flexbox
+
+O uso de Flexbox com Media Queries no CSS é a base do design responsivo moderno, permitindo que layouts flexíveis se adaptem automaticamente a diferentes tamanhos de tela (desktop, tablet, mobile).
+
+**Atribtuos do Flexbox (Para o container pai)**
+
+- `display: flex | inline-flex;` = Define o elemento como um container flex.
+- `flex-direction` = Define a direção dos itens
+    - `row` (padrão) = horizontal.
+    - `column` = vertical
+    - `row-reverse` - `column-reverse`.
+- `flex-wrap` = Define s os itens devem quebrar linha
+    - `nowrap` = linha única
+    - `wrap` = múltiplas linhas
+- `justify-content` = Alinhamento horizontal
+    - `flex-start`, `felx-end`, `center`, `space-between`, `space-around`. 
+- `align-items` = alinhamento vertical
+    - `streech`(padrão), `flex-start`, `flex-end`, `center`, `baseline`.
+- `flex-flow` = atalo para `flex-direction` e `flex-wrap`
+
+**Atributos do Flebox para o container filho**
+
+- `order` = Define a ordem de exibição
+- `flex-grow` = Capacidade de crescer
+- `flex-shrink` = Capacidade de encolher
+- `flex-basis` = Tamanho base do item 
+- `flex` = Atalho para `grow`, `shrink` e `basis`
+- `align-self` = Permite alinhamento individual diferente do container
+
+**Exemplo prático menu responsivo**
+
+  ## **css**
+
+  ```css
+  /* Estilos Padrão (Desktop - Maior) */
+  .container {
+    display: flex;
+    flex-direction: row; /* Itens lado a lado */
+    justify-content: space-between;
+  }
+
+  /* Media Query para Mobile (Menor) */
+  @media (max-width: 600px) {
+    .container {
+      flex-direction: column; /* Itens um embaixo do outro */
+      align-items: center;    /* Centraliza itens */
+    }
+  }
+  ```
